@@ -2,7 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+    />
     <title>Our Timeline | Pram & Caca</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link
@@ -17,6 +20,12 @@
         }
         50% {
           transform: translateY(-8px);
+        }
+      }
+      @media (pointer: coarse) {
+        .memory-item,
+        .timeline-nav-btn {
+          min-height: 44px;
         }
       }
       .floating {
@@ -36,6 +45,7 @@
         position: relative;
       }
       .video-thumbnail::after {
+        content: "▶";
         position: absolute;
         top: 50%;
         left: 50%;
@@ -84,7 +94,6 @@
         display: flex;
         gap: 0;
       }
-
       .lang-btn {
         padding: 5px 12px;
         border: 1px solid #e5e7eb;
@@ -94,29 +103,23 @@
         font-size: 14px;
         font-weight: 500;
       }
-
       .lang-btn:first-child {
         border-radius: 5px 0 0 5px;
       }
-
       .lang-btn:last-child {
         border-radius: 0 5px 5px 0;
       }
-
       .lang-btn:hover {
         background-color: #ffffff;
       }
-
       .lang-btn.active {
         background-color: #3e13ce;
         color: white;
         border-color: #3e13ce;
       }
-
       [data-translate] {
         transition: opacity 0.3s ease;
       }
-
       /* Dark mode styles */
       .dark {
         background: #1a202c;
@@ -131,17 +134,14 @@
         border-color: #4a5568 !important;
         color: #e2e8f0 !important;
       }
-
       .dark .lang-btn.active {
         background-color: #3e13ce !important;
         color: white !important;
         border-color: #3e13ce !important;
       }
-
       .dark .lang-btn:hover {
-        background-color: #ffffff !important;
+        background-color: #4a5568 !important;
       }
-
       .dark .memory-card {
         background: linear-gradient(
           135deg,
@@ -150,30 +150,24 @@
         );
         color: #e2e8f0;
       }
-
       .dark .polaroid {
         background: #2d3748;
         color: #e2e8f0;
       }
-
       .dark .text-gray-600 {
         color: #a0aec0;
       }
-
       .dark .bg-white {
         background-color: #2d3748;
         color: #e2e8f0;
         border-color: #4a5568;
       }
-
       .dark .bg-gray-100 {
         background-color: #2d3748;
       }
-
       .dark .bg-gradient-to-br {
         background: linear-gradient(to bottom right, #1a202c, #2d3748);
       }
-
       .dark .hide-scrollbar {
         background: linear-gradient(
           to bottom,
@@ -182,7 +176,6 @@
           transparent
         );
       }
-
       .theme-toggle {
         position: fixed;
         top: 20px;
@@ -199,13 +192,113 @@
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         transition: all 0.3s ease;
       }
-
       .dark .theme-toggle {
         background: rgba(45, 55, 72, 0.8);
       }
-
       .theme-toggle:hover {
         transform: scale(1.1);
+      }
+      /* Upload Section Dark Mode */
+      .dark #UPLOAD .memory-card {
+        background: linear-gradient(
+          135deg,
+          rgba(45, 55, 72, 0.9) 0%,
+          rgba(26, 32, 44, 0.95) 100%
+        );
+      }
+      .dark .upload-container .bg-white {
+        background-color: #2d3748 !important;
+        border-color: #4a5568;
+      }
+      .dark .upload-container label {
+        color: #e2e8f0 !important;
+      }
+      .dark #memoryCategory,
+      .dark #memoryYear,
+      .dark #memoryFile {
+        background-color: #1a202c;
+        border-color: #4a5568;
+        color: #e2e8f0;
+      }
+      .dark #memoryCategory option {
+        background-color: #2d3748;
+        color: #e2e8f0;
+      }
+      .dark .upload-container button {
+        background-color: #4f46e5 !important;
+        border-color: #4f46e5 !important;
+      }
+      .dark .upload-container button:hover {
+        background-color: #4338ca !important;
+      }
+      .dark #uploadedMemories .border {
+        border-color: #4a5568 !important;
+      }
+      .dark #uploadedMemories .bg-red-500 {
+        background-color: #dc2626 !important;
+      }
+      .dark #uploadedMemories .bg-red-500:hover {
+        background-color: #b91c1c !important;
+      }
+      .dark #uploadedMemories p {
+        color: #e2e8f0;
+      }
+      .dark #uploadedMemories strong {
+        color: #f3f4f6;
+      }
+      /* Upload Form Styles */
+      .upload-container .bg-white {
+        transition: all 0.3s ease;
+      }
+      .upload-container button {
+        transition: all 0.2s ease;
+      }
+      #memoryFile::-webkit-file-upload-button {
+        visibility: hidden;
+      }
+      #memoryFile::before {
+        content: "Pilih File";
+        display: inline-block;
+        background: #f3f4f6;
+        border: 1px solid #e5e7eb;
+        border-radius: 4px;
+        padding: 6px 12px;
+        outline: none;
+        white-space: nowrap;
+        cursor: pointer;
+        font-weight: 500;
+        font-size: 14px;
+      }
+      .dark #memoryFile::before {
+        background: #2d3748;
+        border-color: #4a5568;
+        color: #e2e8f0;
+      }
+      /* Memory Item Styles */
+      .memory-item {
+        transition: transform 0.2s ease;
+      }
+      .memory-item:hover {
+        transform: translateY(-2px);
+      }
+      /* Loading spinner */
+      .loader {
+        border: 4px solid #f3f3f3;
+        border-top: 4px solid #3b82f6;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        animation: spin 1s linear infinite;
+        margin: 20px auto;
+        display: none;
+      }
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
       }
     </style>
   </head>
@@ -260,9 +353,7 @@
               height="14"
               viewBox="0 0 60 30"
             >
-              <clipPath id="s">
-                <path d="M0,0 v30 h60 v-30 z" />
-              </clipPath>
+              <clipPath id="s"><path d="M0,0 v30 h60 v-30 z" /></clipPath>
               <clipPath id="t">
                 <path d="M30,15 h30 v15 z v-30 h-30 z h-30 v30 z v-15 h30 z" />
               </clipPath>
@@ -309,7 +400,7 @@
             class="absolute -inset-2 rounded-full bg-gradient-to-r from-amber-200 to-rose-200 blur-sm opacity-75"
           ></div>
           <img
-            src="css/kita.jpg"
+            src="kita.jpg"
             class="w-24 h-24 rounded-full object-cover relative z-10 border-4 border-white shadow-lg"
           />
         </div>
@@ -331,347 +422,20 @@
       <div
         class="flex overflow-x-auto pb-6 mb-10 hide-scrollbar sticky top-0 bg-gradient-to-b from-gray-50 via-gray-50/90 to-transparent z-10 pt-4"
       >
-        <div class="flex space-x-3 mx-auto px-4">
-          <button
-            onclick="openSection('CIANJUR', event)"
-            class="timeline-nav-btn px-5 py-2 rounded-full bg-white shadow-sm text-sm font-medium whitespace-nowrap hover:bg-white hover:text-blue-600 transition-all border border-gray-200"
-          >
-            Nikahan
-          </button>
-          <button
-            onclick="openSection('PANGALENGAN', event)"
-            class="timeline-nav-btn px-5 py-2 rounded-full bg-white shadow-sm text-sm font-medium whitespace-nowrap hover:bg-white hover:text-blue-600 transition-all border border-gray-200"
-          >
-            Main
-          </button>
-          <button
-            onclick="openSection('CAMPING', event)"
-            class="timeline-nav-btn px-5 py-2 rounded-full bg-white shadow-sm text-sm font-medium whitespace-nowrap hover:bg-white hover:text-blue-600 transition-all border border-gray-200"
-          >
-            Camping
-          </button>
-          <button
-            onclick="openSection('OLAHRAGA', event)"
-            class="timeline-nav-btn px-5 py-2 rounded-full bg-white shadow-sm text-sm font-medium whitespace-nowrap hover:bg-white hover:text-blue-600 transition-all border border-gray-200"
-          >
-            Olahraga
-          </button>
-          <button
-            onclick="openSection('NONGKRONG', event)"
-            class="timeline-nav-btn px-5 py-2 rounded-full bg-white shadow-sm text-sm font-medium whitespace-nowrap hover:bg-white hover:text-blue-600 transition-all border border-gray-200"
-          >
-            Nongkrong
-          </button>
-          <button
-            onclick="openSection('WISUDA', event)"
-            class="timeline-nav-btn px-5 py-2 rounded-full bg-white shadow-sm text-sm font-medium whitespace-nowrap hover:bg-white hover:text-blue-600 transition-all border border-gray-200"
-          >
-            Wisuda
-          </button>
-          <button
-            onclick="openSection('BONUS', event)"
-            class="timeline-nav-btn px-5 py-2 rounded-full bg-white shadow-sm text-sm font-medium whitespace-nowrap hover:bg-white hover:text-blue-600 transition-all border border-gray-200"
-          >
-            Moments
-          </button>
+        <div class="flex space-x-3 mx-auto px-4" id="categoryButtons">
+          <!-- Categories will be loaded dynamically -->
         </div>
       </div>
+
+      <!-- Loading Spinner -->
+      <div class="loader" id="loadingSpinner"></div>
 
       <!-- Memory Sections -->
-      <main class="space-y-16">
-        <!-- CIANJUR Section -->
-        <section id="CIANJUR" class="memory-section">
-          <div class="memory-card rounded-xl shadow-md overflow-hidden">
-            <div class="p-6 pb-2">
-              <h2
-                class="text-2xl font-semibold mb-2 font-['Playfair_Display']"
-                data-translate="wedding"
-              >
-                Wedding Celebration
-              </h2>
-              <p
-                class="text-gray-600 mb-6 timeline-marker"
-                data-translate="wedding_desc"
-              >
-                INI KITA LAGI DI ACARA NIKAHAN KAKAK NYAA HIKAM GUYSSS
-              </p>
-            </div>
-            <div class="grid grid-cols-2 md:grid-cols-3 gap-4 p-4">
-              <div class="polaroid">
-                <img src="css/cianjur1.jpg" class="w-full h-48 object-cover" />
-                <div class="text-center mt-2 text-sm text-gray-600">2024</div>
-              </div>
-              <div class="polaroid">
-                <img src="css/cianjur2.jpg" class="w-full h-48 object-cover" />
-                <div class="text-center mt-2 text-sm text-gray-600">2024</div>
-              </div>
-              <div class="polaroid">
-                <img src="css/cianjur3.jpg" class="w-full h-48 object-cover" />
-                <div class="text-center mt-2 text-sm text-gray-600">2024</div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- PANGALENGAN Section -->
-        <section id="PANGALENGAN" class="memory-section hidden">
-          <div class="memory-card rounded-xl shadow-md overflow-hidden">
-            <div class="p-6 pb-2">
-              <h2
-                class="text-2xl font-semibold mb-2 font-['Playfair_Display']"
-                data-translate="getaway"
-              >
-                Mountain Getaway
-              </h2>
-              <p
-                class="text-gray-600 mb-6 timeline-marker"
-                data-translate="getaway_desc"
-              >
-                INI KITA LAGI MAIN DI PANGALENGAN NAMA TEMPAT NYAA SITU CILEUNCA
-              </p>
-            </div>
-            <div class="grid grid-cols-2 md:grid-cols-3 gap-4 p-4">
-              <div class="polaroid">
-                <img
-                  src="css/pangalengan1.jpg"
-                  class="w-full h-48 object-cover"
-                />
-                <div class="text-center mt-2 text-sm text-gray-600">2024</div>
-              </div>
-              <div class="polaroid">
-                <img
-                  src="css/pangalengan2.jpg"
-                  class="w-full h-48 object-cover"
-                />
-                <div class="text-center mt-2 text-sm text-gray-600">2024</div>
-              </div>
-              <div class="polaroid">
-                <img
-                  src="css/pangalengan3.jpg"
-                  class="w-full h-48 object-cover"
-                />
-                <div class="text-center mt-2 text-sm text-gray-600">2024</div>
-              </div>
-              <div class="polaroid">
-                <img src="css/bliar2.jpg" class="w-full h-48 object-cover" />
-                <div class="text-center mt-2 text-sm text-gray-600">2024</div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- CAMPING Section -->
-        <section id="CAMPING" class="memory-section hidden">
-          <div class="memory-card rounded-xl shadow-md overflow-hidden">
-            <div class="p-6 pb-2">
-              <h2
-                class="text-2xl font-semibold mb-2 font-['Playfair_Display']"
-                data-translate="camping"
-              >
-                Nature Adventure
-              </h2>
-              <p
-                class="text-gray-600 mb-6 timeline-marker"
-                data-translate="camping_desc"
-              >
-                KITA LAGI CAMPING DI CIWIDEY NAMA TEMPAT NYAA LUPA
-              </p>
-            </div>
-            <div class="grid grid-cols-2 md:grid-cols-2 gap-4 p-4">
-              <div class="polaroid video-thumbnail">
-                <video
-                  src="css/camping1.mp4"
-                  controls
-                  class="w-full h-64 object-cover"
-                ></video>
-                <div class="text-center mt-2 text-sm text-gray-600">2024</div>
-              </div>
-              <div class="polaroid video-thumbnail">
-                <video
-                  src="css/camping2.mp4"
-                  controls
-                  class="w-full h-64 object-cover"
-                ></video>
-                <div class="text-center mt-2 text-sm text-gray-600">2024</div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- OLAHRAGA Section -->
-        <section id="OLAHRAGA" class="memory-section hidden">
-          <div class="memory-card rounded-xl shadow-md overflow-hidden">
-            <div class="p-6 pb-2">
-              <h2
-                class="text-2xl font-semibold mb-2 font-['Playfair_Display']"
-                data-translate="fitness"
-              >
-                Fitness Journey
-              </h2>
-              <p
-                class="text-gray-600 mb-6 timeline-marker"
-                data-translate="fitness_desc"
-              >
-                OLAHRAGA DULUU BIAR SEHATT, MAU JADI BINARAGAWAN HAHAHAHAH
-              </p>
-            </div>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 p-4">
-              <div class="polaroid">
-                <img src="css/olahraga1.jpg" class="w-full h-48 object-cover" />
-                <div class="text-center mt-2 text-sm text-gray-600">2024</div>
-              </div>
-              <div class="polaroid">
-                <img src="css/olahraga2.jpg" class="w-full h-48 object-cover" />
-                <div class="text-center mt-2 text-sm text-gray-600">2024</div>
-              </div>
-              <div class="polaroid">
-                <img src="css/olahraga3.jpg" class="w-full h-48 object-cover" />
-                <div class="text-center mt-2 text-sm text-gray-600">2024</div>
-              </div>
-              <div class="polaroid video-thumbnail">
-                <video
-                  src="css/olahraga4.mp4"
-                  controls
-                  class="w-full h-48 object-cover"
-                ></video>
-                <div class="text-center mt-2 text-sm text-gray-600">2024</div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- NONGKRONG Section -->
-        <section id="NONGKRONG" class="memory-section hidden">
-          <div class="memory-card rounded-xl shadow-md overflow-hidden">
-            <div class="p-6 pb-2">
-              <h2
-                class="text-2xl font-semibold mb-2 font-['Playfair_Display']"
-                data-translate="hangouts"
-              >
-                Casual Hangouts
-              </h2>
-              <p
-                class="text-gray-600 mb-6 timeline-marker"
-                data-translate="hangouts_desc"
-              >
-                INI PAS PUASA SAMA ABIS MARHABAAN GUYSS DARI DULU KITA EMANG
-                COCOK KANN GUYSS HAHAHAHAH
-              </p>
-            </div>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 p-4">
-              <div class="polaroid">
-                <img
-                  src="css/nongkrong(poto).jpg"
-                  class="w-full h-48 object-cover"
-                />
-                <div class="text-center mt-2 text-sm text-gray-600">2024</div>
-              </div>
-              <div class="polaroid video-thumbnail">
-                <video
-                  src="css/nongkrong1.mp4"
-                  controls
-                  class="w-full h-48 object-cover"
-                ></video>
-                <div class="text-center mt-2 text-sm text-gray-600">2024</div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- WISUDA Section -->
-        <section id="WISUDA" class="memory-section hidden">
-          <div class="memory-card rounded-xl shadow-md overflow-hidden">
-            <div class="p-6 pb-2">
-              <h2
-                class="text-2xl font-semibold mb-2 font-['Playfair_Display']"
-                data-translate="graduation"
-              >
-                Academic Milestone
-              </h2>
-              <p
-                class="text-gray-600 mb-6 timeline-marker"
-                data-translate="graduation_desc"
-              >
-                INI CACA WISUDA, NANTI PRAM 2026 WISUDA NYAA
-              </p>
-            </div>
-            <div class="grid grid-cols-2 md:grid-cols-3 gap-4 p-4">
-              <div class="polaroid">
-                <img src="css/wisuda1.jpg" class="w-full h-64 object-cover" />
-                <div class="text-center mt-2 text-sm text-gray-600">2024</div>
-              </div>
-              <div class="polaroid">
-                <img src="css/wisuda2.jpg" class="w-full h-64 object-cover" />
-                <div class="text-center mt-2 text-sm text-gray-600">2024</div>
-              </div>
-              <div class="polaroid">
-                <img src="css/wisuda3.jpg" class="w-full h-64 object-cover" />
-                <div class="text-center mt-2 text-sm text-gray-600">2024</div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- BONUS Section -->
-        <section id="BONUS" class="memory-section hidden">
-          <div class="memory-card rounded-xl shadow-md overflow-hidden">
-            <div class="p-6 pb-2">
-              <h2
-                class="text-2xl font-semibold mb-2 font-['Playfair_Display']"
-                data-translate="moments"
-              >
-                Everyday Moments
-              </h2>
-              <p
-                class="text-gray-600 mb-6 timeline-marker"
-                data-translate="moments_desc"
-              >
-                INI PHOTO" KITA LAGI GABUTT AJAA GUYS WKWKWKWK
-              </p>
-            </div>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 p-4">
-              <div class="polaroid">
-                <img src="css/dll1.jpg" class="w-full h-48 object-cover" />
-                <div class="text-center mt-2 text-sm text-gray-600">2024</div>
-              </div>
-              <div class="polaroid">
-                <img src="css/dll2.jpg" class="w-full h-48 object-cover" />
-                <div class="text-center mt-2 text-sm text-gray-600">2024</div>
-              </div>
-              <div class="polaroid">
-                <img src="css/dll3.jpg" class="w-full h-48 object-cover" />
-                <div class="text-center mt-2 text-sm text-gray-600">2024</div>
-              </div>
-              <div class="polaroid">
-                <img src="css/dll4.jpg" class="w-full h-48 object-cover" />
-                <div class="text-center mt-2 text-sm text-gray-600">2024</div>
-              </div>
-            </div>
-          </div>
-        </section>
+      <main class="space-y-16" id="memorySections">
+        <!-- Sections will be loaded dynamically -->
       </main>
 
-      <!-- Featured Video -->
-      <div
-        class="mt-8 max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden"
-      >
-        <div class="p-4">
-          <h2
-            class="text-xl font-semibold mb-3 font-['Playfair_Display'] text-center"
-            data-translate="featured"
-          >
-            Featured Memory
-          </h2>
-          <div class="rounded-lg overflow-hidden">
-            <video
-              src="css/tiktokan.mp4"
-              controls
-              class="w-full h-auto max-h-64 object-contain mx-auto"
-            ></video>
-          </div>
-        </div>
-      </div>
-
+      <!-- Upload Section (Hidden by default) -->
       <section id="UPLOAD" class="memory-section hidden">
         <div class="memory-card rounded-xl shadow-md overflow-hidden">
           <div class="p-6 pb-2">
@@ -682,18 +446,38 @@
               Tambah Kenangan Baru
             </h2>
             <div class="upload-container space-y-4">
+              <div class="bg-white p-4 rounded-lg shadow">
+                <h3 class="text-lg font-semibold mb-3">Kelola Kategori</h3>
+                <div class="flex gap-2 mb-4">
+                  <input
+                    type="text"
+                    id="newCategoryName"
+                    placeholder="Nama Kategori Baru"
+                    class="flex-grow p-2 border rounded bg-white"
+                    maxlength="20"
+                  />
+                  <button
+                    id="addCategoryBtn"
+                    class="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded"
+                  >
+                    Tambah
+                  </button>
+                </div>
+
+                <div class="bg-white p-4 rounded-lg shadow">
+                  <h3 class="text-lg font-semibold mb-3">Daftar Kategori</h3>
+                  <div id="categoryList" class="space-y-2">
+                    <!-- Categories will be loaded dynamically -->
+                  </div>
+                </div>
+              </div>
+
               <!-- Form Upload -->
               <div class="bg-white p-4 rounded-lg shadow">
                 <div class="mb-4">
-                  <label class="block text-gray-700 mb-2">Pilih Kategori</label>
+                  <label class="block text-gray-700 mb-2">Pilih Moment</label>
                   <select id="memoryCategory" class="w-full p-2 border rounded">
-                    <option value="CIANJUR">Nikahan</option>
-                    <option value="PANGALENGAN">Main</option>
-                    <option value="CAMPING">Camping</option>
-                    <option value="OLAHRAGA">Olahraga</option>
-                    <option value="NONGKRONG">Nongkrong</option>
-                    <option value="WISUDA">Wisuda</option>
-                    <option value="BONUS">Moments</option>
+                    <!-- Options will be loaded dynamically -->
                   </select>
                 </div>
 
@@ -713,9 +497,11 @@
                 <div class="mb-4">
                   <label class="block text-gray-700 mb-2">Tahun</label>
                   <input
-                    type="text"
+                    type="number"
                     id="memoryYear"
                     value="2024"
+                    min="2000"
+                    max="2100"
                     class="w-full p-2 border rounded"
                   />
                 </div>
@@ -728,6 +514,30 @@
                 </button>
               </div>
 
+              <!-- Backup/Restore -->
+              <div class="bg-white p-4 rounded-lg shadow">
+                <h3 class="text-lg font-semibold mb-3">Backup Data</h3>
+                <div class="flex gap-2">
+                  <button
+                    onclick="backupMemories()"
+                    class="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded"
+                  >
+                    Backup ke File
+                  </button>
+                  <label
+                    class="bg-purple-500 hover:bg-purple-600 text-white py-2 px-4 rounded cursor-pointer"
+                  >
+                    Restore dari File
+                    <input
+                      type="file"
+                      accept=".json"
+                      class="hidden"
+                      onchange="restoreMemories(this.files[0])"
+                    />
+                  </label>
+                </div>
+              </div>
+
               <!-- Daftar File Terupload -->
               <div class="bg-white p-4 rounded-lg shadow">
                 <h3 class="text-lg font-semibold mb-3">Kenangan Terupload</h3>
@@ -735,13 +545,34 @@
                   id="uploadedMemories"
                   class="grid grid-cols-1 md:grid-cols-2 gap-4"
                 >
-                  <!-- Item akan ditambahkan secara dinamis -->
+                  <!-- Items will be loaded dynamically -->
                 </div>
               </div>
             </div>
           </div>
         </div>
       </section>
+
+      <!-- Featured Video -->
+      <div
+        class="mt-8 max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden"
+      >
+        <div class="p-4">
+          <h2
+            class="text-xl font-semibold mb-3 font-['Playfair_Display'] text-center"
+            data-translate="featured"
+          >
+            Featured Memory
+          </h2>
+          <div class="rounded-lg overflow-hidden">
+            <video
+              src="tiktokan.mp4"
+              controls
+              class="w-full h-auto max-h-64 object-contain mx-auto"
+            ></video>
+          </div>
+        </div>
+      </div>
 
       <!-- Footer -->
       <footer class="mt-16 text-center text-gray-500 text-sm pb-8">
@@ -750,12 +581,18 @@
     </div>
 
     <script>
+      // Global variables
+      let memories = {};
+      const MAX_FILE_SIZE = 2 * 1024 * 1024; // 2MB per file
+      const MAX_TOTAL_SIZE = 4.5 * 1024 * 1024; // 4.5MB total
+      const MAX_ITEMS_PER_CATEGORY = 20;
+
       document.addEventListener("DOMContentLoaded", function () {
-        // Inisialisasi bahasa
+        // Initialize language
         const savedLang = localStorage.getItem("preferredLang") || "id";
         setLanguage(savedLang);
 
-        // Event listener bahasa
+        // Language event listeners
         document
           .getElementById("lang-en")
           .addEventListener("click", () => setLanguage("en"));
@@ -763,8 +600,7 @@
           .getElementById("lang-id")
           .addEventListener("click", () => setLanguage("id"));
 
-        openSection("CIANJUR");
-
+        // Initialize theme
         const savedTheme = localStorage.getItem("theme") || "light";
         setTheme(savedTheme);
 
@@ -772,16 +608,39 @@
         document
           .getElementById("themeToggle")
           .addEventListener("click", toggleTheme);
+
+        // Load memories
+        loadMemories();
+
+        // Initialize category management
+        document
+          .getElementById("addCategoryBtn")
+          .addEventListener("click", addCategory);
+
+        // Render everything
+        renderCategories();
+
+        // Open default section
+        openSection("CIANJUR");
       });
 
-      // Fungsi untuk membuka section
+      // Function to open section
       function openSection(sectionId, event = null) {
+        // Hide all sections
         document.querySelectorAll(".memory-section").forEach((section) => {
           section.classList.add("hidden");
         });
 
-        document.getElementById(sectionId).classList.remove("hidden");
+        // Show selected section
+        const section = document.getElementById(sectionId);
+        if (section) {
+          section.classList.remove("hidden");
+        } else {
+          // If section doesn't exist, show upload section
+          document.getElementById("UPLOAD").classList.remove("hidden");
+        }
 
+        // Update active button
         const navButtons = document.querySelectorAll(".timeline-nav-btn");
         navButtons.forEach((btn) => {
           btn.classList.remove("active");
@@ -790,19 +649,25 @@
         if (event) {
           event.currentTarget.classList.add("active");
         } else {
-          navButtons[0]?.classList.add("active");
+          // Find button matching the section
+          const matchingBtn = Array.from(navButtons).find(
+            (btn) => btn.dataset.category === sectionId
+          );
+          if (matchingBtn) {
+            matchingBtn.classList.add("active");
+          }
         }
 
-        document.getElementById(sectionId).scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        });
+        // Smooth scroll to section
+        if (section) {
+          section.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+        }
       }
 
-      function scrollToTop() {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      }
-
+      // Language translations
       const translations = {
         en: {
           welcome: "Our Journey Together",
@@ -824,6 +689,14 @@
           moments: "Everyday Moments",
           moments_desc: "JUST RANDOM PHOTOS OF US BEING SILLY LOL",
           featured: "Featured Memory",
+          upload: "Add New Memory",
+          category_desc_cianjur: "Special wedding memories",
+          category_desc_pangalengan: "Special mountain getaway memories",
+          category_desc_camping: "Special camping memories",
+          category_desc_olahraga: "Special fitness journey memories",
+          category_desc_nongkrong: "Special hangout memories",
+          category_desc_wisuda: "Special graduation memories",
+          category_desc_bonus: "Special everyday moments",
         },
         id: {
           welcome: "Perjalanan Kami",
@@ -846,35 +719,39 @@
           moments: "Momen sehari-hari",
           moments_desc: 'INI PHOTO" KITA LAGI GABUTT AJAA GUYS WKWKWKWK',
           featured: "Memori Unggulan",
+          upload: "Tambah Kenangan Baru",
+          category_desc_cianjur: "Kenangan spesial nikahan",
+          category_desc_pangalengan: "Kenangan spesial main di gunung",
+          category_desc_camping: "Kenangan spesial camping",
+          category_desc_olahraga: "Kenangan spesial olahraga",
+          category_desc_nongkrong: "Kenangan spesial nongkrong",
+          category_desc_wisuda: "Kenangan spesial wisuda",
+          category_desc_bonus: "Kenangan spesial sehari-hari",
         },
       };
 
-      // Fungsi ganti bahasa
+      // Set language function
       function setLanguage(lang) {
         localStorage.setItem("preferredLang", lang);
         document.documentElement.lang = lang;
 
+        // Update active language button
         document.querySelectorAll(".lang-btn").forEach((btn) => {
           btn.classList.remove("active");
         });
         document.getElementById(`lang-${lang}`).classList.add("active");
 
+        // Update all translatable elements
         const elements = document.querySelectorAll("[data-translate]");
         elements.forEach((el) => {
-          el.classList.add("opacity-50");
+          const key = el.getAttribute("data-translate");
+          if (translations[lang][key]) {
+            el.textContent = translations[lang][key];
+          }
         });
-
-        setTimeout(() => {
-          elements.forEach((el) => {
-            const key = el.getAttribute("data-translate");
-            if (translations[lang][key]) {
-              el.textContent = translations[lang][key];
-            }
-            el.classList.remove("opacity-50");
-          });
-        }, 150);
       }
 
+      // Theme functions
       function setTheme(theme) {
         if (theme === "dark") {
           document.documentElement.classList.add("dark");
@@ -893,27 +770,8 @@
         const newTheme = currentTheme === "light" ? "dark" : "light";
         setTheme(newTheme);
       }
-      // Tambahkan variabel global untuk menyimpan memori
-      let memories = {};
 
-      // Inisialisasi memori saat DOM loaded
-      document.addEventListener("DOMContentLoaded", function () {
-        // [KODE INISIALISASI SEBELUMNYA]
-
-        // Load memori dari localStorage
-        loadMemories();
-
-        // Tambahkan tombol upload ke navigasi
-        const nav = document.querySelector(".hide-scrollbar .flex");
-        const uploadBtn = document.createElement("button");
-        uploadBtn.onclick = (e) => openSection("UPLOAD", e);
-        uploadBtn.className =
-          "timeline-nav-btn px-5 py-2 rounded-full bg-white shadow-sm text-sm font-medium whitespace-nowrap hover:bg-white hover:text-blue-600 transition-all border border-gray-200";
-        uploadBtn.textContent = "Upload";
-        nav.appendChild(uploadBtn);
-      });
-
-      // Fungsi untuk load memori
+      // Memory management functions
       function loadMemories() {
         try {
           const savedMemories = localStorage.getItem("timelineMemories");
@@ -929,20 +787,12 @@
                 BONUS: [],
               };
 
-          // Pastikan semua kategori ada
-          [
-            "CIANJUR",
-            "PANGALENGAN",
-            "CAMPING",
-            "OLAHRAGA",
-            "NONGKRONG",
-            "WISUDA",
-            "BONUS",
-          ].forEach((cat) => {
-            memories[cat] = memories[cat] || [];
+          // Ensure all categories exist and have arrays
+          Object.keys(memories).forEach((cat) => {
+            if (!Array.isArray(memories[cat])) {
+              memories[cat] = [];
+            }
           });
-
-          renderUploadedMemories();
         } catch (e) {
           console.error("Error loading memories:", e);
           memories = {
@@ -957,98 +807,146 @@
         }
       }
 
-      // Fungsi untuk upload memori
-      function uploadMemory() {
-        // Pertama load data yang ada
-        const existingMemories = JSON.parse(
-          localStorage.getItem("timelineMemories")
-        ) || {
-          CIANJUR: [],
-          PANGALENGAN: [],
-          CAMPING: [],
-          OLAHRAGA: [],
-          NONGKRONG: [],
-          WISUDA: [],
-          BONUS: [],
-        };
+      function renderCategories() {
+        const categoryButtons = document.getElementById("categoryButtons");
+        const categorySelect = document.getElementById("memoryCategory");
+        const categoryList = document.getElementById("categoryList");
+        const memorySections = document.getElementById("memorySections");
 
-        const category = document.getElementById("memoryCategory").value;
-        const year = document.getElementById("memoryYear").value;
-        const files = document.getElementById("memoryFile").files;
+        // Clear all containers
+        categoryButtons.innerHTML = "";
+        categorySelect.innerHTML = "";
+        categoryList.innerHTML = "";
+        memorySections.innerHTML = "";
 
-        // Batasi jumlah file yang bisa diupload sekaligus
-        if (files.length > 5) {
-          alert("Maksimal 5 file sekaligus!");
-          return;
-        }
+        // Sort categories alphabetically
+        const sortedCategories = Object.keys(memories).sort();
 
-        // Proses setiap file
-        Array.from(files).forEach((file) => {
-          if (file.size > 2 * 1024 * 1024) {
-            // Batas 2MB per file
-            alert(`File ${file.name} terlalu besar (maks 2MB)`);
-            return;
+        // Render navigation buttons
+        sortedCategories.forEach((category) => {
+          // Navigation button
+          const button = document.createElement("button");
+          button.onclick = (e) => openSection(category, e);
+          button.className =
+            "timeline-nav-btn px-5 py-2 rounded-full bg-white shadow-sm text-sm font-medium whitespace-nowrap hover:bg-white hover:text-blue-600 transition-all border border-gray-200";
+          button.textContent = getCategoryName(category);
+          button.dataset.category = category;
+          categoryButtons.appendChild(button);
+
+          // Dropdown option
+          const option = document.createElement("option");
+          option.value = category;
+          option.textContent = getCategoryName(category);
+          categorySelect.appendChild(option);
+
+          // Category list item
+          const categoryItem = document.createElement("div");
+          categoryItem.className =
+            "flex items-center justify-between p-2 border rounded";
+
+          const categoryName = document.createElement("span");
+          categoryName.textContent = getCategoryName(category);
+
+          const deleteBtn = document.createElement("button");
+          deleteBtn.className =
+            "bg-red-500 hover:bg-red-600 text-white py-1 px-2 rounded text-xs";
+          deleteBtn.textContent = "Hapus";
+          deleteBtn.onclick = () => deleteCategory(category);
+
+          // Disable delete for default categories
+          if (isDefaultCategory(category)) {
+            deleteBtn.disabled = true;
+            deleteBtn.className += " opacity-50 cursor-not-allowed";
           }
 
-          const reader = new FileReader();
+          categoryItem.appendChild(categoryName);
+          categoryItem.appendChild(deleteBtn);
+          categoryList.appendChild(categoryItem);
 
-          reader.onload = function (e) {
-            const memoryItem = {
-              id: Date.now() + "-" + Math.random().toString(36).substr(2, 9),
-              type: file.type.startsWith("image") ? "image" : "video",
-              src: e.target.result,
-              year: year,
-              category: category,
-              name: file.name,
-              size: file.size,
-              lastModified: file.lastModified,
-            };
+          // Memory section
+          const section = document.createElement("section");
+          section.id = category;
+          section.className = "memory-section hidden";
 
-            // Tambahkan ke memori yang sudah ada (tidak overwrite)
-            existingMemories[category].push(memoryItem);
+          section.innerHTML = `
+            <div class="memory-card rounded-xl shadow-md overflow-hidden">
+              <div class="p-6 pb-2">
+                <h2 class="text-2xl font-semibold mb-2 font-['Playfair_Display']">${getCategoryName(
+                  category
+                )}</h2>
+                <p class="text-gray-600 mb-6 timeline-marker" data-translate="category_desc_${category.toLowerCase()}">Kenangan spesial ${getCategoryName(
+            category
+          )}</p>
+              </div>
+              <div class="grid grid-cols-2 md:grid-cols-3 gap-4 p-4" id="${category.toLowerCase()}-grid"></div>
+            </div>
+          `;
 
-            // Simpan dengan error handling
-            try {
-              localStorage.setItem(
-                "timelineMemories",
-                JSON.stringify(existingMemories)
-              );
-              renderUploadedMemories();
-              renderMemorySection(category);
-            } catch (e) {
-              if (e.name === "QuotaExceededError") {
-                alert("Penyimpanan penuh! Hapus beberapa kenangan lama.");
-              }
-            }
-          };
-
-          if (file.type.startsWith("image")) {
-            reader.readAsDataURL(file);
-          } else {
-            // Untuk video langsung gunakan object URL
-            const memoryItem = {
-              id: Date.now() + "-" + Math.random().toString(36).substr(2, 9),
-              type: "video",
-              src: URL.createObjectURL(file),
-              year: year,
-              category: category,
-              name: file.name,
-              size: file.size,
-              lastModified: file.lastModified,
-            };
-
-            existingMemories[category].push(memoryItem);
-            localStorage.setItem(
-              "timelineMemories",
-              JSON.stringify(existingMemories)
-            );
-          }
+          memorySections.appendChild(section);
         });
 
-        document.getElementById("memoryFile").value = "";
+        // Add Upload button to navigation
+        const uploadBtn = document.createElement("button");
+        uploadBtn.onclick = (e) => openSection("UPLOAD", e);
+        uploadBtn.className =
+          "timeline-nav-btn px-5 py-2 rounded-full bg-white shadow-sm text-sm font-medium whitespace-nowrap hover:bg-white hover:text-blue-600 transition-all border border-gray-200";
+        uploadBtn.textContent = "Upload";
+        categoryButtons.appendChild(uploadBtn);
+
+        // Render all memories
+        renderAllMemories();
       }
 
-      // Fungsi untuk render daftar memori terupload
+      function renderAllMemories() {
+        // Render each category
+        Object.keys(memories).forEach((category) => {
+          renderMemorySection(category);
+        });
+        renderUploadedMemories();
+      }
+
+      function renderMemorySection(category) {
+        const grid = document.getElementById(`${category.toLowerCase()}-grid`);
+        if (!grid) return;
+
+        grid.innerHTML = "";
+
+        memories[category].forEach((memory) => {
+          const polaroid = document.createElement("div");
+          polaroid.className = "polaroid memory-item";
+
+          if (memory.type === "image") {
+            const img = document.createElement("img");
+            img.src = memory.src;
+            img.className = "w-full h-48 object-cover";
+            img.loading = "lazy";
+            polaroid.appendChild(img);
+          } else {
+            const video = document.createElement("video");
+            video.src = memory.src;
+            video.controls = true;
+            video.className = "w-full h-48 object-cover video-thumbnail";
+            polaroid.appendChild(video);
+          }
+
+          const yearDiv = document.createElement("div");
+          yearDiv.className = "text-center mt-2 text-sm text-gray-600";
+          yearDiv.textContent = memory.year;
+          polaroid.appendChild(yearDiv);
+
+          grid.appendChild(polaroid);
+
+          polaroid.className = "polaroid memory-item mx-2";
+
+          if (memory.type === "image") {
+            img.className = "w-full h-40 sm:h-48 object-cover";
+          } else {
+            video.className =
+              "w-full h-40 sm:h-48 object-cover video-thumbnail";
+          }
+        });
+      }
+
       function renderUploadedMemories() {
         const container = document.getElementById("uploadedMemories");
         container.innerHTML = "";
@@ -1056,7 +954,7 @@
         Object.keys(memories).forEach((category) => {
           memories[category].forEach((memory) => {
             const item = document.createElement("div");
-            item.className = "border rounded-lg p-3 flex flex-col";
+            item.className = "border rounded-lg p-3 flex flex-col memory-item";
 
             const preview = document.createElement(
               memory.type === "image" ? "img" : "video"
@@ -1068,12 +966,14 @@
             }
 
             const info = document.createElement("div");
-            info.className = "mt-2 text-sm";
+            info.className = "mt-2 text-sm flex-grow";
             info.innerHTML = `
               <p><strong>Kategori:</strong> ${getCategoryName(
                 memory.category
               )}</p>
               <p><strong>Tahun:</strong> ${memory.year}</p>
+              <p><strong>Nama:</strong> ${memory.name || "Untitled"}</p>
+              <p><strong>Ukuran:</strong> ${formatFileSize(memory.size)}</p>
             `;
 
             const deleteBtn = document.createElement("button");
@@ -1091,55 +991,320 @@
         });
       }
 
-      // Fungsi untuk hapus memori
-      function deleteMemory(id, category) {
-        memories[category] = memories[category].filter((m) => m.id !== id);
-        localStorage.setItem("timelineMemories", JSON.stringify(memories));
-        renderUploadedMemories();
-        renderMemorySection(category);
-      }
+      function uploadMemory() {
+        const category = document.getElementById("memoryCategory").value;
+        const year = document.getElementById("memoryYear").value;
+        const files = document.getElementById("memoryFile").files;
 
-      // Fungsi untuk render ulang section memori
-      function renderMemorySection(category) {
-        const section = document.getElementById(category);
-        if (!section) return;
+        if (files.length === 0) {
+          alert("Pilih file terlebih dahulu!");
+          return;
+        }
 
-        const grid = section.querySelector(".grid");
-        if (!grid) return;
+        if (files.length > 5) {
+          alert("Maksimal 5 file sekaligus!");
+          return;
+        }
 
-        // Hapus semua item yang ada
-        grid.innerHTML = "";
+        // Check if category has too many items
+        if (memories[category].length + files.length > MAX_ITEMS_PER_CATEGORY) {
+          alert(
+            `Kategori ini sudah mencapai batas maksimal ${MAX_ITEMS_PER_CATEGORY} item.`
+          );
+          return;
+        }
 
-        // Tambahkan memori dari localStorage
-        memories[category].forEach((memory) => {
-          const polaroid = document.createElement("div");
-          polaroid.className = "polaroid";
+        // Check storage space
+        if (!checkStorageSpace(files)) {
+          return;
+        }
 
-          if (memory.type === "image") {
-            const img = document.createElement("img");
-            img.src = memory.src;
-            img.className = "w-full h-48 object-cover";
-            polaroid.appendChild(img);
-          } else {
-            const video = document.createElement("video");
-            video.src = memory.src;
-            video.controls = true;
-            video.className = "w-full h-48 object-cover video-thumbnail";
-            polaroid.appendChild(video);
-          }
+        // Show loading spinner
+        const spinner = document.getElementById("loadingSpinner");
+        spinner.style.display = "block";
 
-          const yearDiv = document.createElement("div");
-          yearDiv.className = "text-center mt-2 text-sm text-gray-600";
-          yearDiv.textContent = memory.year;
-          polaroid.appendChild(yearDiv);
+        // Process files sequentially
+        processFiles(Array.from(files), 0, category, year, () => {
+          // Hide spinner when done
+          spinner.style.display = "none";
 
-          grid.appendChild(polaroid);
+          // Reset form
+          document.getElementById("memoryFile").value = "";
+
+          // Show success message
+          alert(
+            `${
+              files.length
+            } file berhasil diupload ke kategori ${getCategoryName(category)}!`
+          );
         });
       }
 
-      // Helper function untuk nama kategori
+      function processFiles(files, index, category, year, callback) {
+        if (index >= files.length) {
+          callback();
+          return;
+        }
+
+        const file = files[index];
+
+        if (file.size > MAX_FILE_SIZE) {
+          alert(
+            `File ${file.name} terlalu besar (maks ${formatFileSize(
+              MAX_FILE_SIZE
+            )})`
+          );
+          processFiles(files, index + 1, category, year, callback);
+          return;
+        }
+
+        const reader = new FileReader();
+
+        reader.onload = function (e) {
+          const memoryItem = {
+            id: Date.now() + "-" + Math.random().toString(36).substr(2, 9),
+            type: file.type.startsWith("image") ? "image" : "video",
+            src: e.target.result,
+            year: year,
+            category: category,
+            name: file.name,
+            size: file.size,
+            lastModified: file.lastModified,
+          };
+
+          memories[category].push(memoryItem);
+          saveMemories();
+          renderUploadedMemories();
+          renderMemorySection(category);
+
+          // Process next file
+          processFiles(files, index + 1, category, year, callback);
+        };
+
+        if (file.type.startsWith("image")) {
+          reader.readAsDataURL(file);
+        } else {
+          // For videos, use object URL directly
+          const memoryItem = {
+            id: Date.now() + "-" + Math.random().toString(36).substr(2, 9),
+            type: "video",
+            src: URL.createObjectURL(file),
+            year: year,
+            category: category,
+            name: file.name,
+            size: file.size,
+            lastModified: file.lastModified,
+          };
+
+          memories[category].push(memoryItem);
+          saveMemories();
+          renderUploadedMemories();
+          renderMemorySection(category);
+
+          // Process next file
+          processFiles(files, index + 1, category, year, callback);
+        }
+      }
+
+      function saveMemories() {
+        try {
+          localStorage.setItem("timelineMemories", JSON.stringify(memories));
+          return true;
+        } catch (e) {
+          if (e.name === "QuotaExceededError") {
+            alert("Penyimpanan penuh! Hapus beberapa kenangan lama.");
+            return false;
+          }
+          console.error("Error saving memories:", e);
+          return false;
+        }
+      }
+
+      function deleteMemory(id, category) {
+        if (!confirm("Apakah Anda yakin ingin menghapus kenangan ini?")) {
+          return;
+        }
+
+        memories[category] = memories[category].filter((m) => m.id !== id);
+        if (saveMemories()) {
+          renderUploadedMemories();
+          renderMemorySection(category);
+        }
+      }
+
+      function checkStorageSpace(files) {
+        // Calculate current size from memory items
+        const currentSize = Object.values(memories)
+          .flat()
+          .reduce((sum, m) => sum + m.size, 0);
+
+        // Calculate new files size
+        const newFilesSize = Array.from(files).reduce(
+          (sum, file) => sum + file.size,
+          0
+        );
+
+        if (currentSize + newFilesSize > MAX_TOTAL_SIZE) {
+          alert(
+            `Penyimpanan hampir penuh! Total ${formatFileSize(
+              currentSize + newFilesSize
+            )} melebihi batas ${formatFileSize(
+              MAX_TOTAL_SIZE
+            )}. Hapus beberapa kenangan lama atau kurangi ukuran file.`
+          );
+          return false;
+        }
+        return true;
+      }
+
+      function backupMemories() {
+        try {
+          const data = JSON.stringify(memories);
+          const blob = new Blob([data], { type: "application/json" });
+          const url = URL.createObjectURL(blob);
+
+          const a = document.createElement("a");
+          a.href = url;
+          a.download = `timeline-backup-${new Date()
+            .toISOString()
+            .slice(0, 10)}.json`;
+          a.click();
+
+          setTimeout(() => {
+            URL.revokeObjectURL(url);
+          }, 100);
+        } catch (error) {
+          alert(`Backup gagal: ${error.message}`);
+          console.error(error);
+        }
+      }
+
+      function restoreMemories(file) {
+        if (!file) return;
+
+        if (
+          !confirm(
+            "Restore backup akan mengganti semua data yang ada. Lanjutkan?"
+          )
+        ) {
+          return;
+        }
+
+        const spinner = document.getElementById("loadingSpinner");
+        spinner.style.display = "block";
+
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          try {
+            const backupData = JSON.parse(e.target.result);
+
+            // Basic validation
+            if (typeof backupData !== "object" || backupData === null) {
+              throw new Error("Format backup tidak valid");
+            }
+
+            // Convert to proper format if needed
+            const convertedData = {};
+            Object.keys(backupData).forEach((category) => {
+              convertedData[category] = Array.isArray(backupData[category])
+                ? backupData[category]
+                : [];
+            });
+
+            memories = convertedData;
+            if (saveMemories()) {
+              renderCategories();
+              alert("Backup berhasil di-restore!");
+            }
+          } catch (e) {
+            console.error("Error restoring backup:", e);
+            alert("Gagal restore backup: " + e.message);
+          } finally {
+            spinner.style.display = "none";
+          }
+        };
+        reader.readAsText(file);
+      }
+
+      function addCategory() {
+        const newCategoryInput = document.getElementById("newCategoryName");
+        const newCategoryName = newCategoryInput.value.trim();
+
+        if (!newCategoryName) {
+          alert("Masukkan nama kategori terlebih dahulu!");
+          return;
+        }
+
+        if (newCategoryName.length > 20) {
+          alert("Nama kategori terlalu panjang (maks 20 karakter)");
+          return;
+        }
+
+        const newCategoryKey = newCategoryName
+          .toUpperCase()
+          .replace(/\s+/g, "_");
+
+        if (memories[newCategoryKey]) {
+          alert("Kategori sudah ada!");
+          return;
+        }
+
+        // Add new category
+        memories[newCategoryKey] = [];
+        if (saveMemories()) {
+          renderCategories();
+          // Reset input
+          newCategoryInput.value = "";
+          // Open upload section
+          openSection("UPLOAD");
+        }
+      }
+
+      function deleteCategory(category) {
+        if (isDefaultCategory(category)) {
+          alert("Kategori default tidak dapat dihapus!");
+          return;
+        }
+
+        if (
+          !confirm(
+            `Hapus kategori ${getCategoryName(category)} dan semua isinya?`
+          )
+        ) {
+          return;
+        }
+
+        // Delete category
+        delete memories[category];
+        if (saveMemories()) {
+          renderCategories();
+
+          // Open first available section or upload section
+          const firstCategory = Object.keys(memories)[0];
+          if (firstCategory) {
+            openSection(firstCategory);
+          } else {
+            openSection("UPLOAD");
+          }
+        }
+      }
+
+      // Helper functions
+      function isDefaultCategory(category) {
+        const defaultCategories = [
+          "CIANJUR",
+          "PANGALENGAN",
+          "CAMPING",
+          "OLAHRAGA",
+          "NONGKRONG",
+          "WISUDA",
+          "BONUS",
+        ];
+        return defaultCategories.includes(category);
+      }
+
       function getCategoryName(category) {
-        const names = {
+        const defaultNames = {
           CIANJUR: "Nikahan",
           PANGALENGAN: "Main",
           CAMPING: "Camping",
@@ -1148,42 +1313,25 @@
           WISUDA: "Wisuda",
           BONUS: "Moments",
         };
-        return names[category] || category;
+
+        if (defaultNames[category]) {
+          return defaultNames[category];
+        }
+
+        return category
+          .toLowerCase()
+          .replace(/_/g, " ")
+          .split(" ")
+          .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+          .join(" ");
       }
 
-      // Tambahkan terjemahan untuk upload
-      translations.en.upload = "Add New Memory";
-      translations.id.upload = "Tambah Kenangan Baru";
-
-      // Backup data ke file
-      function backupMemories() {
-        const data = JSON.stringify(memories);
-        const blob = new Blob([data], { type: "application/json" });
-        const url = URL.createObjectURL(blob);
-
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = `timeline-backup-${new Date().toISOString()}.json`;
-        a.click();
-      }
-
-      // Restore dari file
-      function restoreMemories(file) {
-        const reader = new FileReader();
-        reader.onload = function (e) {
-          try {
-            const backupData = JSON.parse(e.target.result);
-            localStorage.setItem(
-              "timelineMemories",
-              JSON.stringify(backupData)
-            );
-            loadMemories();
-            alert("Backup berhasil di-restore!");
-          } catch (e) {
-            alert("File backup tidak valid!");
-          }
-        };
-        reader.readAsText(file);
+      function formatFileSize(bytes) {
+        if (bytes === 0) return "0 Bytes";
+        const k = 1024;
+        const sizes = ["Bytes", "KB", "MB", "GB"];
+        const i = Math.floor(Math.log(bytes) / Math.log(k));
+        return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + " " + sizes[i];
       }
     </script>
   </body>
