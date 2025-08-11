@@ -911,40 +911,35 @@
 
         grid.innerHTML = "";
 
-        memories[category].forEach((memory) => {
-          const polaroid = document.createElement("div");
-          polaroid.className = "polaroid memory-item";
+        const latestMemory = [...memories[category]].sort(
+          (a, b) => b.year - a.year || b.id.localeCompare(a.id)
+        )[0];
 
-          if (memory.type === "image") {
-            const img = document.createElement("img");
-            img.src = memory.src;
-            img.className = "w-full h-48 object-cover";
-            img.loading = "lazy";
-            polaroid.appendChild(img);
-          } else {
-            const video = document.createElement("video");
-            video.src = memory.src;
-            video.controls = true;
-            video.className = "w-full h-48 object-cover video-thumbnail";
-            polaroid.appendChild(video);
-          }
+        if (!latestMemory) return;
 
-          const yearDiv = document.createElement("div");
-          yearDiv.className = "text-center mt-2 text-sm text-gray-600";
-          yearDiv.textContent = memory.year;
-          polaroid.appendChild(yearDiv);
+        const polaroid = document.createElement("div");
+        polaroid.className = "polaroid memory-item mx-2";
 
-          grid.appendChild(polaroid);
+        if (latestMemory.type === "image") {
+          const img = document.createElement("img");
+          img.src = latestMemory.src;
+          img.className = "w-full h-40 sm:h-48 object-cover";
+          img.loading = "lazy";
+          polaroid.appendChild(img);
+        } else {
+          const video = document.createElement("video");
+          video.src = latestMemory.src;
+          video.controls = true;
+          video.className = "w-full h-40 sm:h-48 object-cover video-thumbnail";
+          polaroid.appendChild(video);
+        }
 
-          polaroid.className = "polaroid memory-item mx-2";
+        const yearDiv = document.createElement("div");
+        yearDiv.className = "text-center mt-2 text-sm text-gray-600";
+        yearDiv.textContent = latestMemory.year;
+        polaroid.appendChild(yearDiv);
 
-          if (memory.type === "image") {
-            img.className = "w-full h-40 sm:h-48 object-cover";
-          } else {
-            video.className =
-              "w-full h-40 sm:h-48 object-cover video-thumbnail";
-          }
-        });
+        grid.appendChild(polaroid);
       }
 
       function renderUploadedMemories() {
